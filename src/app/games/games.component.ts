@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-games',
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './games.component.css'
 })
 export class GamesComponent {
+  @Input() username: string = '';
+  @Output() addFavoriteEvent = new EventEmitter<string>();
   games = [
     {
       id: 1,
@@ -22,4 +24,8 @@ export class GamesComponent {
       name: 'BloodBorne'
     }
   ]
+
+  fav(gameName: string){
+    this.addFavoriteEvent.emit(gameName);
+  }
 }
